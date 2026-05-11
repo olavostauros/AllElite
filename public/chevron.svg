@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <style>:root { color: #B89732; }</style>
+  <defs>
+    <symbol id="logo" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+      <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square" stroke-linejoin="miter">
+        <polyline points="56,80 100,52 144,80"/>
+        <polyline points="56,107 100,79 144,107"/>
+        <polyline points="56,134 100,106 144,134"/>
+      </g>
+      <path fill="currentColor" d="M100,152 L105.8,164.2 L119.2,165.2 L109.1,173.8 L112.4,186.9 L100,179.8 L87.6,186.9 L90.9,173.8 L80.8,165.2 L94.2,164.2 Z"/>
+    </symbol>
+  </defs>
+  <use href="#logo"/>
+</svg>
