@@ -1,43 +1,41 @@
-# Astro Starter Kit: Minimal
+# AllElite — Manual de Identidade Visual
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Este repositório contém o **Manual de Identidade Visual da marca AllElite**, publicado como site estático gerado com [Astro](https://astro.build).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Propósito
 
-## 🚀 Project Structure
+O manual documenta os elementos visuais que compõem a identidade da AllElite: paleta de cores, tipografia, logo e suas variações, tom de voz, e diretrizes de uso. Destina-se a designers, desenvolvedores e agentes automatizados que precisam aplicar ou verificar a identidade visual da marca com consistência.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Estrutura do projeto
 
 ```text
 /
-├── public/
+├── public/          # Assets estáticos (fontes, imagens, ícones)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/  # Componentes Astro reutilizáveis
+│   └── pages/       # Rotas do site (arquivo .astro ou .md = uma página)
+├── astro.config.mjs # Configuração do Astro
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Todos os comandos são executados na raiz do projeto:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Comando             | Ação                                          |
+| :------------------ | :-------------------------------------------- |
+| `npm install`       | Instala as dependências                       |
+| `npm run dev`       | Inicia o servidor local em `localhost:4321`   |
+| `npm run build`     | Gera o site de produção em `./dist/`          |
+| `npm run preview`   | Pré-visualiza o build antes de publicar       |
+| `npm run astro ...` | Executa comandos do CLI Astro                 |
 
-## 🧞 Commands
+Requer Node >= 22.12.0.
 
-All commands are run from the root of the project, from a terminal:
+## Para agentes
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Stack: Astro + TypeScript (strict mode). Sem framework de UI integrado por padrão.
+- Roteamento baseado em arquivos em `src/pages/`.
+- Assets estáticos em `public/`.
+- Conteúdo do manual em `src/pages/` e componentes em `src/components/`.
+- Consulte `CLAUDE.md` para instruções de desenvolvimento e arquitetura.
