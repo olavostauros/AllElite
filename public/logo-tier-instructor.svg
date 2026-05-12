@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200">
+  <!-- Left wings -->
+  <g fill="currentColor">
+    <polygon points="74,82 74,90 44,90 18,102 36,90"/>
+    <polygon points="74,98 74,106 52,106 26,118 44,106"/>
+    <polygon points="74,114 74,122 62,122 40,134 52,122"/>
+  </g>
+  <!-- Right wings -->
+  <g fill="currentColor">
+    <polygon points="266,82 266,90 296,90 322,102 304,90"/>
+    <polygon points="266,98 266,106 288,106 314,118 296,106"/>
+    <polygon points="266,114 266,122 278,122 300,134 288,122"/>
+  </g>
+  <!-- Center mark -->
+  <g transform="translate(70,0)">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+    <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square" stroke-linejoin="miter">
+      <polyline points="56,80 100,52 144,80"/>
+      <polyline points="56,107 100,79 144,107"/>
+      <polyline points="56,134 100,106 144,134"/>
+    </g>
+    <path fill="currentColor" d="M100,152 L105.8,164.2 L119.2,165.2 L109.1,173.8 L112.4,186.9 L100,179.8 L87.6,186.9 L90.9,173.8 L80.8,165.2 L94.2,164.2 Z"/>
+  </g>
+</svg>

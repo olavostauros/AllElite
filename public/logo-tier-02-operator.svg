@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+  <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square">
+    <polyline points="56,97 100,69 144,97"/>
+    <polyline points="56,125 100,97 144,125"/>
+  </g>
+  <path fill="currentColor" d="M100,150 L105.8,162.2 L119.2,163.2 L109.1,171.8 L112.4,184.9 L100,177.8 L87.6,184.9 L90.9,171.8 L80.8,163.2 L94.2,162.2 Z"/>
+</svg>

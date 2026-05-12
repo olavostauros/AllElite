@@ -1667,8 +1667,8 @@ img { display: block; max-width: 100%; }
 }
 .tp-preview {
   position: relative;
-  width: 100%;
-  height: 160px;
+  width: calc(100% + 48px);
+  height: 220px;
   margin: -28px -24px 20px;
   overflow: hidden;
   background: var(--bg);
@@ -1676,27 +1676,30 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--line);
   box-sizing: border-box;
 }
+.tp-preview--square {
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
 .tp-example-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
   object-fit: cover;
-  object-position: center top;
-  display: block;
+  object-position: center;
+  max-width: none;
 }
 .tp-example-img[data-error] { display: none; }
 .tp-ph {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
   pointer-events: none;
 }
+.tp-example-img[data-error] ~ .tp-ph { display: flex; }
 .tp-ph-text {
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
