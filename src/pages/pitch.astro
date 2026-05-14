@@ -1,0 +1,1697 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Elite — Investor Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Big+Shoulders+Display:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/chevron.svg">
+<style>
+/* ── LANGUAGE TOGGLE ── */
+body.lang-pt .en-text { display: none !important; }
+body:not(.lang-pt) .pt-text { display: none !important; }
+
+.lang-toggle {
+  display: flex; align-items: center; gap: 0;
+  background: none; border: 1px solid var(--line-2);
+  cursor: pointer; overflow: hidden; flex-shrink: 0;
+}
+.lt-opt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 7px 12px; color: var(--muted-2); transition: color .15s, background .15s;
+  border: none; background: none; cursor: pointer;
+}
+.lt-opt.active { color: var(--gold); background: rgba(184,151,50,0.08); }
+.lt-sep { color: var(--line-2); font-size: 10px; pointer-events: none; }
+
+/* ── PITCH TABLE ── */
+.pitch-table {
+  width: 100%; border: 1px solid var(--line);
+  border-collapse: collapse; margin-bottom: 24px;
+}
+.pitch-table th {
+  background: var(--bg-2); padding: 13px 20px;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-2);
+  text-align: left; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);
+}
+.pitch-table th:last-child { border-right: none; }
+.pitch-table td {
+  padding: 13px 20px; font-size: 13px; color: var(--text);
+  border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);
+  vertical-align: top; line-height: 1.55;
+}
+.pitch-table td:last-child { border-right: none; }
+.pitch-table tr:last-child td { border-bottom: none; }
+.pitch-table tr.total-row td {
+  background: var(--bg-2);
+  font-family: 'Anton', sans-serif; font-size: 15px;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold);
+}
+.pitch-table .muted-td { color: var(--muted); }
+.pitch-table .gold-td { color: var(--gold); }
+
+/* ── TEXT BLOCKS ── */
+.text-block {
+  font-size: 15px; color: var(--text);
+  line-height: 1.75; max-width: 720px; margin-bottom: 28px;
+}
+.text-block p { margin-bottom: 14px; }
+.text-block p:last-child { margin-bottom: 0; }
+.text-block strong { color: var(--gold); }
+.text-block em { color: var(--muted); font-style: italic; }
+
+.pitch-quote {
+  border-left: 3px solid var(--gold);
+  padding: 20px 28px; background: var(--bg-2);
+  margin: 24px 0; font-size: 15px; color: var(--muted);
+  line-height: 1.65; font-style: italic;
+}
+
+/* ── COMPARE TABLE ── */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line); margin-bottom: 24px;
+}
+.cg-head {
+  padding: 13px 20px; background: var(--bg-2);
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted-2);
+  border-bottom: 1px solid var(--line); border-right: 1px solid var(--line);
+}
+.cg-head:last-child { border-right: none; }
+.cg-head.gold { color: var(--gold); }
+.cg-cell {
+  padding: 13px 20px; font-size: 13px; color: var(--muted);
+  border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); line-height: 1.5;
+}
+.cg-cell:last-child { border-right: none; }
+.cg-cell.em { color: var(--text); font-weight: 500; }
+.compare-grid > *:nth-last-child(-n+2) { border-bottom: none; }
+
+/* ── CHANNEL LIST ── */
+.channel-list { border: 1px solid var(--line); margin-bottom: 24px; }
+.ch-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.ch-row:last-child { border-bottom: none; }
+.ch-name {
+  padding: 18px 22px; background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  font-family: 'Anton', sans-serif; font-size: 13px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  display: flex; align-items: center;
+}
+.ch-desc {
+  padding: 18px 22px; font-size: 13px;
+  color: var(--muted); line-height: 1.55; display: flex; align-items: center;
+}
+@media (max-width: 600px) {
+  .ch-row { grid-template-columns: 1fr; }
+  .ch-name { border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ── TEAM LIST ── */
+.team-list { border: 1px solid var(--line); margin-bottom: 24px; }
+.tm-row {
+  display: grid; grid-template-columns: 220px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.tm-row:last-child { border-bottom: none; }
+.tm-role {
+  padding: 20px 24px; background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  font-family: 'Anton', sans-serif; font-size: 13px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  display: flex; align-items: center;
+}
+.tm-desc {
+  padding: 20px 24px; font-size: 13px;
+  color: var(--muted); line-height: 1.55; display: flex; align-items: center;
+}
+@media (max-width: 600px) {
+  .tm-row { grid-template-columns: 1fr; }
+  .tm-role { border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ── ROADMAP ── */
+.roadmap { border: 1px solid var(--line); margin-bottom: 24px; }
+.rm-row {
+  display: grid; grid-template-columns: 200px 160px 1fr;
+  border-bottom: 1px solid var(--line); align-items: start;
+}
+.rm-row:last-child { border-bottom: none; }
+.rm-row.hdr { background: var(--bg-2); }
+.rm-row.hdr > * {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-2);
+  padding: 11px 18px; border-right: 1px solid var(--line);
+}
+.rm-row.hdr > *:last-child { border-right: none; }
+.rm-phase {
+  padding: 18px; font-family: 'Anton', sans-serif;
+  font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+  border-right: 1px solid var(--line);
+}
+.rm-time {
+  padding: 18px; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; color: var(--gold);
+  text-transform: uppercase; border-right: 1px solid var(--line);
+}
+.rm-milestone {
+  padding: 18px; font-size: 13px;
+  color: var(--muted); line-height: 1.5;
+}
+@media (max-width: 700px) {
+  .rm-row { grid-template-columns: 1fr; }
+  .rm-row.hdr { display: none; }
+  .rm-phase, .rm-time { border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ── INVESTOR RECEIVES ── */
+.inv-list { border: 1px solid var(--line); margin-bottom: 24px; }
+.inv-item {
+  padding: 16px 24px; border-bottom: 1px solid var(--line);
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 14px; color: var(--text); line-height: 1.55;
+}
+.inv-item:last-child { border-bottom: none; }
+.inv-item::before { content: '—'; color: var(--gold); flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+
+/* ── METRICS GRID ── */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line); margin-bottom: 24px;
+}
+.mg-cell {
+  padding: 28px 20px; border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line); background: var(--bg-2);
+}
+.mg-cell:nth-child(4n) { border-right: none; }
+.mg-cell:nth-last-child(-n+4) { border-bottom: none; }
+.mg-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted-2); margin-bottom: 10px;
+}
+.mg-value {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900; font-size: 28px; color: var(--line-2); line-height: 1;
+}
+@media (max-width: 700px) {
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .mg-cell:nth-child(4n) { border-right: 1px solid var(--line); }
+  .mg-cell:nth-child(2n) { border-right: none; }
+  .mg-cell:nth-last-child(-n+4) { border-bottom: 1px solid var(--line); }
+  .mg-cell:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+/* ── FUNNEL ── */
+.funnel {
+  display: flex; border: 1px solid var(--line);
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.fn-step {
+  flex: 1; min-width: 120px; padding: 28px 16px;
+  text-align: center; border-right: 1px solid var(--line);
+}
+.fn-step:last-child { border-right: none; }
+.fn-num {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900; font-size: 48px; color: var(--line-2); line-height: 1; margin-bottom: 10px;
+}
+.fn-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+}
+.fn-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 600px) {
+  .funnel { flex-direction: column; }
+  .fn-step { border-right: none; border-bottom: 1px solid var(--line); }
+  .fn-step:last-child { border-bottom: none; }
+}
+
+/* ── EQUITY NOTE ── */
+.equity-note {
+  background: var(--bg-2); border: 1px solid var(--line);
+  padding: 18px 24px; margin-top: -16px; margin-bottom: 24px;
+  font-size: 12px; color: var(--muted); line-height: 1.65; font-style: italic;
+}
+
+/* ── BACK COVER ── */
+.back-cover {
+  background: var(--bg-2); padding: 120px 0 100px;
+  border-top: 1px solid var(--line); text-align: center;
+}
+.bc-logo { color: var(--gold); width: 120px; height: 120px; margin: 0 auto 40px; }
+.bc-title {
+  font-family: 'Anton', sans-serif; font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: 0.02em; text-transform: uppercase;
+  line-height: 0.88; margin-bottom: 40px;
+}
+.bc-title .g { color: var(--gold); }
+.bc-sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted-2);
+  margin-bottom: 56px; font-style: italic;
+}
+.bc-contacts {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;
+}
+.bc-contact {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-2);
+  border: 1px solid var(--line); padding: 9px 14px;
+}
+.bc-contact a { color: inherit; }
+.bc-legal {
+  max-width: 560px; margin: 0 auto;
+  font-size: 11px; color: var(--muted-2); line-height: 1.6;
+}
+
+/* ── SECTION LINK NAV ── */
+@media (max-width: 900px) {
+  .topnav-links { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── PROGRESS BAR ── -->
+<div id="progress"></div>
+
+<!-- ── SVG DEFS ── -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+<defs>
+  <symbol id="chevron-logo" viewBox="0 0 1080 1080">
+    <path fill="currentColor" d="M740.59,939.99c-59.17,29.77-122.74,45.46-188.66,47.54-43.62,1.38-86.56-4.47-128.52-15.49l-23.36-7.02c-116.18-38.07-212.29-123.33-264.35-234.14-23.46-49.94-38.27-103.28-41.44-158.33l-1.1-19.17c-.56-9.65-.38-18.95.03-28.78,2.45-58.95,14.57-113.11,38.82-167.07,9.84-21.9,20.48-42.43,33.83-62.36s26.14-37.25,41.78-54.35c13.1-14.33,26.26-27.36,41.01-40.09,72.28-62.38,163.11-99.91,258.35-106.91,14.79-1.09,28.28-1.95,42.78-1.36,20.42.82,39.84,2.41,60.38,5.62,84.88,13.27,163.91,51.13,227.81,108.23,41.71,37.27,74.39,80.13,100.16,129.84,16.09,31.03,27.48,63.29,36.13,97.15,16.86,66.02,17.18,140.72,1.51,207.14-10.79,45.74-27.62,88.95-51.82,129.09-40.13,66.56-99,125.52-167.28,161.91l-16.05,8.55ZM590.23,958.88l6.98-.85c87.42-11.85,169.16-50.26,232.5-111.45l5.16-4.98c48.19-46.56,83.5-103.96,104.95-167.69,29.34-87.17,29.02-186.12-1.78-272.73-9.4-26.43-20.5-51.2-34.8-75.25-19.29-32.44-41.93-61.65-68.9-87.94-1.13-2.51-2.44-3.92-5.04-4.86-75.52-71.04-174.08-112.05-277.9-114.73l-22.59-.03c-125.74,3.28-244.13,63.16-321.26,162.45-54.38,70.01-83.96,151.93-88.64,240.58l-.84,8.99c-.75,8.05-.06,15.23.55,23.14l2.56,33.45c5.54,44.99,16.85,88.66,36.13,129.64,9.68,20.58,20.01,39.62,32.7,58.43,19.71,29.23,42.16,54.97,68.02,78.66l9.72,8.33c88.88,76.16,205.96,111.14,322.5,96.86Z"/>
+    <polygon fill="currentColor" points="514.57 440.92 495.62 453 483.81 460.53 324.91 561.84 297.1 518.17 335.92 493.71 540.31 363.29 783.58 518.15 755.77 561.87 540.48 424.64 529.65 431.27 514.57 440.92"/>
+    <polygon fill="currentColor" points="540.33 552.05 336.75 681.78 324.95 689.29 297.1 645.91 540.35 490.8 783.59 645.89 755.82 689.44 540.33 552.05"/>
+    <polygon fill="currentColor" points="755.86 434.39 540.42 296.81 324.86 434.32 297.22 390.5 540.29 235.82 783.55 390.64 755.86 434.39"/>
+    <path fill="currentColor" d="M550.17,825.85l-10.58-5.8-57.82,32.86,15.05-61.26-45.68-39.03c1.39-1.21,3.41-1.7,5.38-1.84l17.82-1.31,38.09-2.87,27.27-57.16,27.38,57.24,36.11,2.78,25.65,2.11-26.31,23.08-20.13,17.18,15.16,60.9-47.4-26.88Z"/>
+  </symbol>
+  <symbol id="tier-01" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+    <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square">
+      <polyline points="56,108 100,80 144,108"/>
+    </g>
+    <path fill="currentColor" d="M100,138 L105.8,150.2 L119.2,151.2 L109.1,159.8 L112.4,172.9 L100,165.8 L87.6,172.9 L90.9,159.8 L80.8,151.2 L94.2,150.2 Z"/>
+  </symbol>
+  <symbol id="tier-02" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+    <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square">
+      <polyline points="56,97 100,69 144,97"/>
+      <polyline points="56,125 100,97 144,125"/>
+    </g>
+    <path fill="currentColor" d="M100,150 L105.8,162.2 L119.2,163.2 L109.1,171.8 L112.4,184.9 L100,177.8 L87.6,184.9 L90.9,171.8 L80.8,163.2 L94.2,162.2 Z"/>
+  </symbol>
+  <symbol id="tier-03" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+    <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square">
+      <polyline points="56,86 100,58 144,86"/>
+      <polyline points="56,111 100,83 144,111"/>
+      <polyline points="56,136 100,108 144,136"/>
+    </g>
+    <path fill="currentColor" d="M100,158 L105.8,170.2 L119.2,171.2 L109.1,179.8 L112.4,192.9 L100,185.8 L87.6,192.9 L90.9,179.8 L80.8,171.2 L94.2,170.2 Z"/>
+  </symbol>
+  <symbol id="logo-instructor" viewBox="0 0 340 200">
+    <g fill="currentColor">
+      <polygon points="74,82 74,90 44,90 18,102 36,90"/>
+      <polygon points="74,98 74,106 52,106 26,118 44,106"/>
+      <polygon points="74,114 74,122 62,122 40,134 52,122"/>
+    </g>
+    <g fill="currentColor">
+      <polygon points="266,82 266,90 296,90 322,102 304,90"/>
+      <polygon points="266,98 266,106 288,106 314,118 296,106"/>
+      <polygon points="266,114 266,122 278,122 300,134 288,122"/>
+    </g>
+    <g transform="translate(70,0)">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="5.5"/>
+      <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square" stroke-linejoin="miter">
+        <polyline points="56,80 100,52 144,80"/>
+        <polyline points="56,107 100,79 144,107"/>
+        <polyline points="56,134 100,106 144,134"/>
+      </g>
+      <path fill="currentColor" d="M100,152 L105.8,164.2 L119.2,165.2 L109.1,173.8 L112.4,186.9 L100,179.8 L87.6,186.9 L90.9,173.8 L80.8,165.2 L94.2,164.2 Z"/>
+    </g>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ── TOP NAV ── -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="/" class="topnav-brand">ALL <em>ELITE</em></a>
+    <span class="topnav-doc">
+      <span class="en-text">Investor Pitch Deck</span>
+      <span class="pt-text">Pitch Deck para Investidores</span>
+    </span>
+    <ul class="topnav-links">
+      <li><a href="#s01">01</a></li>
+      <li><a href="#s02">02</a></li>
+      <li><a href="#s03">03</a></li>
+      <li><a href="#s04">04</a></li>
+      <li><a href="#s05">05</a></li>
+      <li><a href="#s06">06</a></li>
+      <li><a href="#s07">07</a></li>
+      <li><a href="#s08">08</a></li>
+      <li><a href="#s09">09</a></li>
+      <li><a href="#s10">10</a></li>
+      <li><a href="/">VIM</a></li>
+    </ul>
+    <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+      <button class="lt-opt active" id="btn-en">EN</button>
+      <span class="lt-sep">/</span>
+      <button class="lt-opt" id="btn-pt">PT</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================================
+     COVER
+     ================================================================ -->
+<section class="cover" id="cover">
+  <div class="cover-grid-bg"></div>
+  <span class="cover-ver">
+    <span class="en-text">ALL ELITE · PITCH DECK · 2026</span>
+    <span class="pt-text">ALL ELITE · PITCH DECK · 2026</span>
+  </span>
+  <div class="cover-content container">
+    <div class="cover-doc-label">
+      <span class="en-text">Investor Pitch Deck</span>
+      <span class="pt-text">Pitch Deck para Investidores</span>
+    </div>
+    <h1 class="cover-title">
+      ALL<br><span class="g">ELITE</span><br>TRAINING
+    </h1>
+    <p class="cover-sub">
+      <span class="en-text">Discipline Above All — a veteran-led military beach training and lifestyle brand built for people who want more than a gym.</span>
+      <span class="pt-text">Disciplina Acima de Tudo — uma marca premium de treinamento militar na praia, liderada por veterano, para quem quer mais do que uma academia.</span>
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-cell">
+        <div class="cm-label">
+          <span class="en-text">Founder</span>
+          <span class="pt-text">Fundador</span>
+        </div>
+        <div class="cm-value">Instructor Kemp</div>
+      </div>
+      <div class="cover-meta-cell">
+        <div class="cm-label">
+          <span class="en-text">Location</span>
+          <span class="pt-text">Localização</span>
+        </div>
+        <div class="cm-value">Vila Velha, ES</div>
+      </div>
+      <div class="cover-meta-cell">
+        <div class="cm-label">
+          <span class="en-text">Ask</span>
+          <span class="pt-text">Captação</span>
+        </div>
+        <div class="cm-value" style="color:var(--gold)">R$150.000</div>
+      </div>
+      <div class="cover-meta-cell">
+        <div class="cm-label">
+          <span class="en-text">Instagram</span>
+          <span class="pt-text">Instagram</span>
+        </div>
+        <div class="cm-value">@allelite.br</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     01 · FOUNDER & OPPORTUNITY
+     ================================================================ -->
+<section class="chapter" id="s01">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">01</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">The Founder & The Opportunity</span>
+          <span class="pt-text">O Fundador e a Oportunidade</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">THE<br><span class="a">FOUNDER</span><br>IS THE MOAT</span>
+          <span class="pt-text">O<br><span class="a">FUNDADOR</span><br>É O MOAT</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Competitors can copy sandbags and tires. They cannot copy 82nd Airborne command presence and combat experience.</span>
+          <span class="pt-text">Concorrentes podem copiar sacos de areia. Não podem copiar presença de comando da 82nd Airborne e experiência de combate.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="text-block en-text">
+      <p>Instructor Kemp Parise served in the US Army — <strong>82nd Airborne Division, 75th Ranger Regiment.</strong> After leaving the military, he looked at the fitness market in Vila Velha and saw the same problem everywhere: programs that sell exercise. Nobody was selling the thing that actually changes people — <strong>structure, accountability, and the feeling of belonging to something that demands more than showing up.</strong></p>
+      <p>ALL ELITE Training was built to fill that gap. Not another gym. Not another beach class. A veteran-led system where every session is a mission, every shirt is a rank, and the squad is real.</p>
+    </div>
+    <div class="text-block pt-text">
+      <p>O Instructor Kemp Parise serviu no Exército dos EUA — <strong>82nd Airborne Division, 75th Ranger Regiment.</strong> Ao deixar o exército, ele olhou para o mercado fitness de Vila Velha e encontrou o mesmo problema em todo lugar: programas que vendem exercício. Ninguém estava vendendo o que realmente transforma pessoas — <strong>estrutura, responsabilidade e a sensação de pertencer a algo que exige mais do que só aparecer.</strong></p>
+      <p>A ALL ELITE Training foi construída para preencher esse espaço. Não é mais uma academia. Não é mais uma aula na praia. É um sistema liderado por veterano onde cada sessão é uma missão, cada camiseta é uma patente e o esquadrão é real.</p>
+    </div>
+
+    <div class="pitch-quote en-text">He is not offering a service. <strong>He is the product.</strong></div>
+    <div class="pitch-quote pt-text">Ele não está oferecendo um serviço. <strong>Ele é o produto.</strong></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     02 · WHAT ALL ELITE SELLS
+     ================================================================ -->
+<section class="chapter" id="s02">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">02</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">What ALL ELITE Sells</span>
+          <span class="pt-text">O que a ALL ELITE Vende</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">IDENTITY,<br><span class="a">EARNED</span><br>STATUS</span>
+          <span class="pt-text">IDENTIDADE,<br><span class="a">STATUS</span><br>CONQUISTADO</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Most fitness programs sell classes. ALL ELITE sells identity, earned status, and belonging — unlocking premium pricing and loyalty no discount campaign can buy.</span>
+          <span class="pt-text">Programas de fitness vendem aulas. A ALL ELITE vende identidade, status conquistado e pertencimento — com preço premium e lealdade que nenhuma campanha de desconto compra.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Comparison table — bilingual inline, no toggle needed -->
+    <div class="compare-grid">
+      <div class="cg-head">
+        <span class="en-text">Traditional programs sell</span>
+        <span class="pt-text">Programas tradicionais vendem</span>
+      </div>
+      <div class="cg-head gold">
+        <span class="en-text">ALL ELITE sells</span>
+        <span class="pt-text">ALL ELITE vende</span>
+      </div>
+      <div class="cg-cell">
+        <span class="en-text">Exercise</span>
+        <span class="pt-text">Exercício</span>
+      </div>
+      <div class="cg-cell em">
+        <span class="en-text">Mission</span>
+        <span class="pt-text">Missão</span>
+      </div>
+      <div class="cg-cell">
+        <span class="en-text">Generic shirts</span>
+        <span class="pt-text">Camisetas genéricas</span>
+      </div>
+      <div class="cg-cell em">
+        <span class="en-text">Ranks earned through performance</span>
+        <span class="pt-text">Patentes conquistadas pelo desempenho</span>
+      </div>
+      <div class="cg-cell">
+        <span class="en-text">Individual attendance</span>
+        <span class="pt-text">Presença individual</span>
+      </div>
+      <div class="cg-cell em">
+        <span class="en-text">Squad culture & accountability</span>
+        <span class="pt-text">Cultura de esquadrão e responsabilidade</span>
+      </div>
+      <div class="cg-cell">
+        <span class="en-text">Motivation</span>
+        <span class="pt-text">Motivação</span>
+      </div>
+      <div class="cg-cell em">
+        <span class="en-text">Standard</span>
+        <span class="pt-text">Padrão</span>
+      </div>
+    </div>
+
+    <div class="foundation-grid">
+      <div class="foundation-card">
+        <div class="fc-label">
+          <span class="en-text">Target Audience</span>
+          <span class="pt-text">Público-Alvo</span>
+        </div>
+        <div class="fc-body en-text">Men and women <strong>18–45</strong>, Vila Velha and greater ES. Fitness adults who want more than a gym, former athletes who miss team culture, people who pay premium for things that mean something.</div>
+        <div class="fc-body pt-text">Homens e mulheres de <strong>18 a 45 anos</strong>, Vila Velha e Grande ES. Adultos de fitness que querem mais do que academia, ex-atletas que sentem falta de cultura de equipe, pessoas que pagam premium por coisas com significado.</div>
+      </div>
+      <div class="foundation-card">
+        <div class="fc-label">
+          <span class="en-text">Competition</span>
+          <span class="pt-text">Concorrência</span>
+        </div>
+        <div class="fc-body en-text">CrossFit gyms are the only real competition. They offer something close. <strong>They don't offer this.</strong> No competitor in the region has veteran leadership, a military tier system, and an authentic squad identity.</div>
+        <div class="fc-body pt-text">Academias CrossFit são a única concorrência real. Oferecem algo próximo. <strong>Não oferecem isso.</strong> Nenhum concorrente na região tem liderança veterana, sistema de níveis militar e identidade de esquadrão autêntica.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     03 · PRODUCT SYSTEM
+     ================================================================ -->
+<section class="chapter" id="s03">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">03</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">The Product System</span>
+          <span class="pt-text">O Sistema de Produto</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">THREE<br><span class="a">LAYERS,</span><br>ONE MARK</span>
+          <span class="pt-text">TRÊS<br><span class="a">CAMADAS,</span><br>UMA MARCA</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Training, tiers, and apparel — three revenue streams that reinforce each other. The logo's three chevrons map directly to the three tiers.</span>
+          <span class="pt-text">Treinamento, níveis e vestuário — três fontes de receita que se reforçam. Os três chevrons do logo mapeiam diretamente para os três níveis.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Tier grid -->
+    <div class="tier-grid">
+      <div class="tier-cell">
+        <svg width="100" height="100"><use href="#tier-01"/></svg>
+        <div class="tier-num-badge">
+          <span class="en-text">Tier 01</span>
+          <span class="pt-text">Nível 01</span>
+        </div>
+        <div class="tier-name">Recruit</div>
+        <div class="tier-mark">1 chevron + star + ring</div>
+        <div class="tier-desc">
+          <span class="en-text">Entry-level rank. Recruit-exclusive apparel unlocked upon earning.</span>
+          <span class="pt-text">Nível de entrada. Vestuário exclusivo Recruit liberado ao conquistar.</span>
+        </div>
+      </div>
+      <div class="tier-cell">
+        <svg width="100" height="100"><use href="#tier-02"/></svg>
+        <div class="tier-num-badge">
+          <span class="en-text">Tier 02</span>
+          <span class="pt-text">Nível 02</span>
+        </div>
+        <div class="tier-name">Operator</div>
+        <div class="tier-mark">2 chevrons + star + ring</div>
+        <div class="tier-desc">
+          <span class="en-text">Proven presence and performance. Operator-exclusive apparel unlocked.</span>
+          <span class="pt-text">Presença e desempenho comprovados. Vestuário exclusivo Operator liberado.</span>
+        </div>
+      </div>
+      <div class="tier-cell">
+        <svg width="100" height="100"><use href="#tier-03"/></svg>
+        <div class="tier-num-badge">
+          <span class="en-text">Tier 03</span>
+          <span class="pt-text">Nível 03</span>
+        </div>
+        <div class="tier-name">Sergeant</div>
+        <div class="tier-mark">3 chevrons + star + ring</div>
+        <div class="tier-desc">
+          <span class="en-text">Elite rank. Sergeant-exclusive apparel. Advancement is never automatic.</span>
+          <span class="pt-text">Nível elite. Vestuário exclusivo Sergeant. O avanço nunca é automático.</span>
+        </div>
+      </div>
+      <div class="tier-cell instructor-tier">
+        <svg width="160" height="100"><use href="#logo-instructor"/></svg>
+        <div class="tier-num-badge">
+          <span class="en-text">Instructor Only</span>
+          <span class="pt-text">Somente Instructor</span>
+        </div>
+        <div class="tier-name">Instructor Kemp</div>
+        <div class="tier-mark">chevron + ring + wings</div>
+        <div class="tier-desc">
+          <span class="en-text">Not earnable. Belongs only to the founder. The mark above the system.</span>
+          <span class="pt-text">Não conquistável. Pertence apenas ao fundador. A marca acima do sistema.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-rule">
+      <strong>
+        <span class="en-text">Apparel ceiling: R$250–R$600 / piece.</span>
+        <span class="pt-text">Teto de vestuário: R$250–R$600 / peça.</span>
+      </strong>
+      <span class="en-text"> Tier-locked pieces are earned, not just bought. Open-tier products (t-shirt, hoodie, hat, mug, sock) are available to anyone. Limited drops create scarcity and hype.</span>
+      <span class="pt-text"> Peças bloqueadas por nível são conquistadas, não apenas compradas. Produtos de nível aberto (camiseta, hoodie, boné, caneca, meia) disponíveis para qualquer pessoa. Drops limitados criam escassez e hype.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     04 · REVENUE MODEL
+     ================================================================ -->
+<section class="chapter" id="s04">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">04</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Revenue Model</span>
+          <span class="pt-text">Modelo de Receita</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">FOUR<br><span class="a">STREAMS,</span><br>ONE DIRECTION</span>
+          <span class="pt-text">QUATRO<br><span class="a">FONTES,</span><br>UMA DIREÇÃO</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">The business competes on identity and authenticity — not on price. Drop-in rates are set high enough to make membership the obvious choice.</span>
+          <span class="pt-text">O negócio compete por identidade e autenticidade — não por preço. Avulsas têm preço alto o suficiente para o plano mensal ser a escolha óbvia.</span>
+        </p>
+      </div>
+    </div>
+
+    <table class="pitch-table">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Revenue Stream</span>
+            <span class="pt-text">Fonte de Receita</span>
+          </th>
+          <th>
+            <span class="en-text">Model</span>
+            <span class="pt-text">Modelo</span>
+          </th>
+          <th>
+            <span class="en-text">Range</span>
+            <span class="pt-text">Faixa</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="en-text">Monthly Memberships</span>
+            <span class="pt-text">Mensalidades</span>
+          </td>
+          <td class="muted-td">
+            <span class="en-text">Recurring</span>
+            <span class="pt-text">Recorrente</span>
+          </td>
+          <td class="gold-td">R$297–R$497/mês</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Apparel</span>
+            <span class="pt-text">Vestuário</span>
+          </td>
+          <td class="muted-td">
+            <span class="en-text">Drops + open store</span>
+            <span class="pt-text">Drops + loja aberta</span>
+          </td>
+          <td class="gold-td">R$80–R$600/peça</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Saturday Crucible & Events</span>
+            <span class="pt-text">Sábado Crucible e Eventos</span>
+          </td>
+          <td class="muted-td">
+            <span class="en-text">Per-session & team entry</span>
+            <span class="pt-text">Por sessão e inscrição de equipe</span>
+          </td>
+          <td class="gold-td">R$80–R$1.200</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Sponsors</span>
+            <span class="pt-text">Patrocinadores</span>
+          </td>
+          <td class="muted-td">
+            <span class="en-text">Annual packages</span>
+            <span class="pt-text">Pacotes anuais</span>
+          </td>
+          <td class="gold-td">R$500–R$5.000+</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <span class="eyebrow" style="margin-bottom:16px">
+      <span class="en-text">Projection at 75 paying members</span>
+      <span class="pt-text">Projeção com 75 membros pagantes</span>
+    </span>
+
+    <table class="pitch-table">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Source</span>
+            <span class="pt-text">Fonte</span>
+          </th>
+          <th>
+            <span class="en-text">Monthly</span>
+            <span class="pt-text">Mensal</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="en-text">Memberships</span>
+            <span class="pt-text">Mensalidades</span>
+          </td>
+          <td>R$29.775</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Apparel</span>
+            <span class="pt-text">Vestuário</span>
+          </td>
+          <td>R$3.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Saturday Crucible & events</span>
+            <span class="pt-text">Sábado Crucible e eventos</span>
+          </td>
+          <td>R$3.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Sponsors</span>
+            <span class="pt-text">Patrocinadores</span>
+          </td>
+          <td>R$5.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Drop-in classes</span>
+            <span class="pt-text">Avulsas</span>
+          </td>
+          <td>R$1.500</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td>R$42.275</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tier-rule">
+      <strong>
+        <span class="en-text">Monthly operating cost at this scale:</span>
+        <span class="pt-text">Custo operacional mensal nessa escala:</span>
+      </strong>
+      <span class="muted-td"> R$6.500–R$14.000</span>
+      <span class="en-text" style="color:var(--muted);font-size:13px"> (assistant, media, marketing, awards, admin, transport)</span>
+      <span class="pt-text" style="color:var(--muted);font-size:13px"> (assistente, mídia, marketing, premiações, admin, transporte)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     05 · SPONSOR PLATFORM
+     ================================================================ -->
+<section class="chapter" id="s05">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">05</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Sponsor Platform</span>
+          <span class="pt-text">Plataforma de Patrocínio</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">ACCESS,<br>NOT<br><span class="a">CHARITY</span></span>
+          <span class="pt-text">ACESSO,<br>NÃO<br><span class="a">CARIDADE</span></span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Sponsors buy access to a growing, highly engaged fitness community and associate their brand with discipline, veteran leadership, and transformation.</span>
+          <span class="pt-text">Patrocinadores compram acesso a uma comunidade fitness crescente e altamente engajada, associando sua marca com disciplina, liderança veterana e transformação.</span>
+        </p>
+      </div>
+    </div>
+
+    <table class="pitch-table">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Package</span>
+            <span class="pt-text">Pacote</span>
+          </th>
+          <th>
+            <span class="en-text">Investment</span>
+            <span class="pt-text">Investimento</span>
+          </th>
+          <th>
+            <span class="en-text">Core Deliverables</span>
+            <span class="pt-text">Entregas Principais</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bronze</strong></td>
+          <td class="gold-td">R$500–R$1.000</td>
+          <td class="muted-td">
+            <span class="en-text">Logo on banner, post &amp; story mentions, member discount</span>
+            <span class="pt-text">Logo em banner, menções em post e story, desconto para membros</span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>
+            <span class="en-text">Silver</span>
+            <span class="pt-text">Prata</span>
+          </strong></td>
+          <td class="gold-td">R$1.500–R$3.000</td>
+          <td class="muted-td">
+            <span class="en-text">Bronze + competition shirt logo, dedicated reel, vendor booth</span>
+            <span class="pt-text">Bronze + logo na camiseta de competição, reel dedicado, estande de vendedor</span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>
+            <span class="en-text">Gold</span>
+            <span class="pt-text">Ouro</span>
+          </strong></td>
+          <td class="gold-td">R$5.000+</td>
+          <td class="muted-td">
+            <span class="en-text">Silver + "presented by" status, mic mentions, premium event shirt, multiple posts</span>
+            <span class="pt-text">Prata + status "presented by", menções no microfone, camiseta premium de evento, múltiplos posts</span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>
+            <span class="en-text">Prize Sponsor</span>
+            <span class="pt-text">Patrocinador de Prêmio</span>
+          </strong></td>
+          <td class="muted-td">
+            <span class="en-text">Product / voucher</span>
+            <span class="pt-text">Produto / voucher</span>
+          </td>
+          <td class="muted-td">
+            <span class="en-text">Products or vouchers in exchange for activation exposure</span>
+            <span class="pt-text">Produtos ou vouchers em troca de exposição de ativação</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tier-rule">
+      <span class="en-text">Sponsor logos appear on competition shirts, event shirts, banners, and sponsored content. <strong>They never appear on everyday tier shirts</strong> — protecting the integrity of the tier system and, by extension, the sponsor's own association with the brand.</span>
+      <span class="pt-text">Logos de patrocinadores aparecem em camisetas de competição, de evento, banners e conteúdo patrocinado. <strong>Nunca aparecem nas camisetas de nível do dia a dia</strong> — protegendo a integridade do sistema de tiers e, por extensão, a associação do próprio patrocinador com a marca.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     06 · OPERATION BEACHHEAD
+     ================================================================ -->
+<section class="chapter" id="s06">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">06</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Operation Beachhead</span>
+          <span class="pt-text">Operação Beachhead</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">THE<br><span class="a">FLAGSHIP</span><br>EVENT</span>
+          <span class="pt-text">O<br><span class="a">EVENTO</span><br>PRINCIPAL</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">ALL ELITE's first public military competition — teams of 4, beach-based, open to the region. The brand's highest-visibility event and single largest projected revenue moment.</span>
+          <span class="pt-text">A primeira competição militar pública da ALL ELITE — equipes de 4, na praia, aberta para a região. O evento de maior visibilidade da marca e seu maior momento de receita projetado.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="foundation-grid" style="margin-bottom:24px">
+      <div class="foundation-card">
+        <div class="fc-label">
+          <span class="en-text">Format</span>
+          <span class="pt-text">Formato</span>
+        </div>
+        <div class="fc-body">
+          <span class="en-text">Teams of 4, adapted divisions when needed. <strong>Launch:</strong> 20–30 teams. <strong>Growth target:</strong> 40–60 regional teams.</span>
+          <span class="pt-text">Equipes de 4, divisões adaptadas quando necessário. <strong>Lançamento:</strong> 20–30 equipes. <strong>Meta de crescimento:</strong> 40–60 equipes regionais.</span>
+        </div>
+      </div>
+      <div class="foundation-card">
+        <div class="fc-label">
+          <span class="en-text">Timeline & Media</span>
+          <span class="pt-text">Timeline e Mídia</span>
+        </div>
+        <div class="fc-body">
+          <span class="en-text">8–12 weeks lead time for promotion, early bird, and sponsor closing. <strong>Media:</strong> drone, reels, sponsor moments, winners ceremony.</span>
+          <span class="pt-text">8–12 semanas de antecedência para promoção, early bird e fechamento de patrocinadores. <strong>Mídia:</strong> drone, reels, momentos de patrocinadores, cerimônia de premiação.</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="eyebrow" style="margin-bottom:16px">
+      <span class="en-text">Revenue projection at 40 teams</span>
+      <span class="pt-text">Projeção de receita com 40 equipes</span>
+    </span>
+
+    <table class="pitch-table">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Source</span>
+            <span class="pt-text">Fonte</span>
+          </th>
+          <th>
+            <span class="en-text">Value</span>
+            <span class="pt-text">Valor</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="en-text">Team registrations (40 × R$1.000)</span>
+            <span class="pt-text">Inscrições de equipes (40 × R$1.000)</span>
+          </td>
+          <td>R$40.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Vendors (10 × R$300)</span>
+            <span class="pt-text">Vendedores (10 × R$300)</span>
+          </td>
+          <td>R$3.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Sponsors</span>
+            <span class="pt-text">Patrocinadores</span>
+          </td>
+          <td>R$10.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Limited competition shirt profit</span>
+            <span class="pt-text">Lucro de camiseta de competição limitada</span>
+          </td>
+          <td>R$6.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Partner commissions</span>
+            <span class="pt-text">Comissões de parceiros</span>
+          </td>
+          <td>R$1.000</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td>R$60.000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================================================================
+     07 · GO-TO-MARKET
+     ================================================================ -->
+<section class="chapter" id="s07">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">07</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Go-to-Market</span>
+          <span class="pt-text">Estratégia de Mercado</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">SHOW<br><span class="a">PROOF,</span><br>CONVERT</span>
+          <span class="pt-text">MOSTRE<br><span class="a">PROVA,</span><br>CONVERTA</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Simple and repeatable: show proof, invite to trial, convert in 48 hours. Content standard: black backgrounds, Military Gold accents, sweat and sand — never studio photography.</span>
+          <span class="pt-text">Simples e repetível: mostrar prova, convidar para o teste, converter em 48 horas. Padrão de conteúdo: fundo preto, ouro militar, suor e areia — sem fotografia de estúdio.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="channel-list">
+      <div class="ch-row">
+        <div class="ch-name">Instagram</div>
+        <div class="ch-desc">
+          <span class="en-text">Primary brand channel — reels of real training, founder story, tier promotions, product drops.</span>
+          <span class="pt-text">Canal principal da marca — reels de treino real, história do fundador, promoções de tier, drops de produto.</span>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-name">WhatsApp</div>
+        <div class="ch-desc">
+          <span class="en-text">Conversion engine — fast follow-up, scheduling, community group management.</span>
+          <span class="pt-text">Motor de conversão — follow-up rápido, agendamento, gestão de grupo da comunidade.</span>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-name">
+          <span class="en-text">Local Partners</span>
+          <span class="pt-text">Parcerias Locais</span>
+        </div>
+        <div class="ch-desc">
+          <span class="en-text">CrossFit gyms, BJJ academies, running groups, triathletes, nutritionists.</span>
+          <span class="pt-text">Academias CrossFit, academias de BJJ, grupos de corrida, triatletas, nutricionistas.</span>
+        </div>
+      </div>
+      <div class="ch-row">
+        <div class="ch-name">Referral</div>
+        <div class="ch-desc">
+          <span class="en-text">Members who bring others earn status benefits — not just discounts.</span>
+          <span class="pt-text">Membros que trazem outros ganham benefícios de status — não apenas descontos.</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="eyebrow" style="margin-bottom:16px">
+      <span class="en-text">Acquisition Funnel</span>
+      <span class="pt-text">Funil de Aquisição</span>
+    </span>
+
+    <div class="funnel">
+      <div class="fn-step">
+        <div class="fn-num">01</div>
+        <div class="fn-label">
+          <span class="en-text">Free Trial</span>
+          <span class="pt-text">Aula Grátis</span>
+        </div>
+        <div class="fn-desc">
+          <span class="en-text">Free trial class — experience the mission.</span>
+          <span class="pt-text">Aula experimental grátis — viva a missão.</span>
+        </div>
+      </div>
+      <div class="fn-step">
+        <div class="fn-num">02</div>
+        <div class="fn-label">
+          <span class="en-text">48h Follow-up</span>
+          <span class="pt-text">Follow-up 48h</span>
+        </div>
+        <div class="fn-desc">
+          <span class="en-text">Personal message via WhatsApp within 48 hours.</span>
+          <span class="pt-text">Mensagem pessoal via WhatsApp em 48 horas.</span>
+        </div>
+      </div>
+      <div class="fn-step">
+        <div class="fn-num">03</div>
+        <div class="fn-label">
+          <span class="en-text">Trial Week</span>
+          <span class="pt-text">Semana de Teste</span>
+        </div>
+        <div class="fn-desc">
+          <span class="en-text">R$50 trial week — low barrier, high intent signal.</span>
+          <span class="pt-text">Semana experimental R$50 — baixa barreira, alto sinal de intenção.</span>
+        </div>
+      </div>
+      <div class="fn-step">
+        <div class="fn-num">04</div>
+        <div class="fn-label">
+          <span class="en-text">Membership</span>
+          <span class="pt-text">Mensalidade</span>
+        </div>
+        <div class="fn-desc">
+          <span class="en-text">Monthly membership conversion — recurring revenue.</span>
+          <span class="pt-text">Conversão para mensalidade — receita recorrente.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     08 · STRUCTURE & CONTROL
+     ================================================================ -->
+<section class="chapter" id="s08">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">08</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Structure & Control</span>
+          <span class="pt-text">Estrutura e Controle</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">LEAN,<br><span class="a">OWNED,</span><br>CONTROLLED</span>
+          <span class="pt-text">ENXUTA,<br><span class="a">PRÓPRIA,</span><br>CONTROLADA</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Instructor Kemp retains full ownership of name, logo, VIM, Instagram, website, store, client list, and bank accounts. The brand is not a committee.</span>
+          <span class="pt-text">Instructor Kemp mantém propriedade total do nome, logo, VIM, Instagram, site, loja, lista de clientes e contas bancárias. A marca não é um comitê.</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="team-list">
+      <div class="tm-row">
+        <div class="tm-role">Instructor Kemp</div>
+        <div class="tm-desc">
+          <span class="en-text">Sole operator, brand guardian, head coach. Full ownership of all assets. He is the product and the brand.</span>
+          <span class="pt-text">Único operador, guardião da marca, head coach. Propriedade total de todos os ativos. Ele é o produto e a marca.</span>
+        </div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-role">
+          <span class="en-text">PT Assistant</span>
+          <span class="pt-text">Assistente PT</span>
+        </div>
+        <div class="tm-desc">
+          <span class="en-text">Content creation, DMs, member communication, sponsor reports. Portuguese-speaking.</span>
+          <span class="pt-text">Criação de conteúdo, DMs, comunicação com membros, relatórios de patrocinadores. Falante de português.</span>
+        </div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-role">
+          <span class="en-text">Sponsor Rep</span>
+          <span class="pt-text">Rep de Patrocínio</span>
+        </div>
+        <div class="tm-desc">
+          <span class="en-text">Commission-based. Closes sponsors and vendors. No equity, no fixed cost.</span>
+          <span class="pt-text">Baseado em comissão. Fecha patrocinadores e vendedores. Sem equity, sem custo fixo.</span>
+        </div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-role">
+          <span class="en-text">Event Team</span>
+          <span class="pt-text">Equipe de Evento</span>
+        </div>
+        <div class="tm-desc">
+          <span class="en-text">Added only for competitions. Not a fixed operational cost.</span>
+          <span class="pt-text">Adicionada apenas para competições. Não é custo operacional fixo.</span>
+        </div>
+      </div>
+      <div class="tm-row">
+        <div class="tm-role">
+          <span class="en-text">Pro Media</span>
+          <span class="pt-text">Mídia Pro</span>
+        </div>
+        <div class="tm-desc">
+          <span class="en-text">Contracted per content day and event. Not a fixed cost.</span>
+          <span class="pt-text">Contratada por dia de conteúdo e evento. Não é custo fixo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-rule">
+      <span class="en-text">The ALL ELITE logo and brand marks are <strong>original, legally clean</strong>, and not derived from any official US military insignia.</span>
+      <span class="pt-text">A marca ALL ELITE e seus símbolos são <strong>originais, juridicamente seguros</strong> e não derivados de nenhuma insígnia oficial do Exército dos EUA.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     09 · INVESTOR PROPOSAL
+     ================================================================ -->
+<section class="chapter" id="s09">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">09</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Investor Proposal</span>
+          <span class="pt-text">Proposta ao Investidor</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text"><span class="a">R$150K</span><br>SEED<br>CAPITAL</span>
+          <span class="pt-text"><span class="a">R$150K</span><br>CAPITAL<br>SEMENTE</span>
+        </h2>
+        <p class="chapter-lede">
+          <span class="en-text">Seed capital to solve transportation, launch tier-locked premium apparel, build digital infrastructure, and fund Operation Beachhead.</span>
+          <span class="pt-text">Capital semente para resolver transporte, lançar vestuário premium bloqueado por tier, construir infraestrutura digital e financiar a Operação Beachhead.</span>
+        </p>
+      </div>
+    </div>
+
+    <span class="eyebrow" style="margin-bottom:16px">
+      <span class="en-text">Use of Funds</span>
+      <span class="pt-text">Uso dos Recursos</span>
+    </span>
+
+    <table class="pitch-table">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Item</span>
+            <span class="pt-text">Item</span>
+          </th>
+          <th>
+            <span class="en-text">Amount</span>
+            <span class="pt-text">Valor</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="en-text">Used truck (purchase or down payment)</span>
+            <span class="pt-text">Caminhonete usada (compra ou entrada)</span>
+          </td>
+          <td>R$80.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">20 weighted vests</span>
+            <span class="pt-text">20 coletes de peso</span>
+          </td>
+          <td>R$12.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Stretchers & additional equipment</span>
+            <span class="pt-text">Macas e equipamentos adicionais</span>
+          </td>
+          <td>R$10.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Website & online store</span>
+            <span class="pt-text">Site e loja online</span>
+          </td>
+          <td>R$5.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">First tier-locked apparel drop</span>
+            <span class="pt-text">Primeiro drop de vestuário bloqueado por tier</span>
+          </td>
+          <td>R$20.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Media & marketing</span>
+            <span class="pt-text">Mídia e marketing</span>
+          </td>
+          <td>R$8.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Legal & administrative</span>
+            <span class="pt-text">Jurídico e administrativo</span>
+          </td>
+          <td>R$5.000</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">Working capital</span>
+            <span class="pt-text">Capital de giro</span>
+          </td>
+          <td>R$10.000</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td>R$150.000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ch-divider">
+      <div class="ch-divider-line"></div>
+      <span class="ch-divider-label">
+        <span class="en-text">Equity Structure</span>
+        <span class="pt-text">Estrutura de Equity</span>
+      </span>
+      <div class="ch-divider-line"></div>
+    </div>
+
+    <table class="pitch-table" style="margin-bottom:8px">
+      <thead>
+        <tr>
+          <th>
+            <span class="en-text">Traction at time of investment</span>
+            <span class="pt-text">Tração no momento do investimento</span>
+          </th>
+          <th>
+            <span class="en-text">Suggested equity for R$150K</span>
+            <span class="pt-text">Equity sugerido para R$150K</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="en-text">Pre-revenue</span>
+            <span class="pt-text">Pré-receita</span>
+          </td>
+          <td class="gold-td">10%–20%</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">30–50 paying members</span>
+            <span class="pt-text">30–50 membros pagantes</span>
+          </td>
+          <td class="gold-td">10%–15%</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="en-text">75–100 paying members</span>
+            <span class="pt-text">75–100 membros pagantes</span>
+          </td>
+          <td class="gold-td">8%–12%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="equity-note">
+      <span class="en-text">Possible structures: direct minority equity, equity with limited revenue participation, revenue share until fixed return, or convertible note.</span>
+      <span class="pt-text">Estruturas possíveis: equity minoritário direto, equity com participação limitada de receita, revenue share até retorno fixo, ou nota conversível.</span>
+    </div>
+
+    <div class="ch-divider">
+      <div class="ch-divider-line"></div>
+      <span class="ch-divider-label">
+        <span class="en-text">Investor Receives</span>
+        <span class="pt-text">O Investidor Recebe</span>
+      </span>
+      <div class="ch-divider-line"></div>
+    </div>
+
+    <div class="inv-list">
+      <div class="inv-item">
+        <span class="en-text">Monthly report: members, revenue, expenses, conversions, sponsor pipeline</span>
+        <span class="pt-text">Relatório mensal: membros, receita, despesas, conversões, pipeline de patrocinadores</span>
+      </div>
+      <div class="inv-item">
+        <span class="en-text">Quarterly strategy review: roadmap, drops, competition pipeline, ROI</span>
+        <span class="pt-text">Revisão trimestral de estratégia: roadmap, drops, pipeline de competições, ROI</span>
+      </div>
+      <div class="inv-item">
+        <span class="en-text">Optional advisory role — no management control</span>
+        <span class="pt-text">Papel consultivo opcional — sem controle de gestão</span>
+      </div>
+      <div class="inv-item">
+        <span class="en-text">Access to sponsor introductions and event exposure</span>
+        <span class="pt-text">Acesso a introduções de patrocinadores e exposição em eventos</span>
+      </div>
+    </div>
+
+    <div class="ch-divider">
+      <div class="ch-divider-line"></div>
+      <span class="ch-divider-label">
+        <span class="en-text">Growth Roadmap</span>
+        <span class="pt-text">Roadmap de Crescimento</span>
+      </span>
+      <div class="ch-divider-line"></div>
+    </div>
+
+    <div class="roadmap">
+      <div class="rm-row hdr">
+        <div>
+          <span class="en-text">Phase</span>
+          <span class="pt-text">Fase</span>
+        </div>
+        <div>
+          <span class="en-text">Timeline</span>
+          <span class="pt-text">Período</span>
+        </div>
+        <div>
+          <span class="en-text">Key Milestone</span>
+          <span class="pt-text">Marco Principal</span>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">
+          <span class="en-text">Foundation</span>
+          <span class="pt-text">Fundação</span>
+        </div>
+        <div class="rm-time">
+          <span class="en-text">Months 1–2</span>
+          <span class="pt-text">Meses 1–2</span>
+        </div>
+        <div class="rm-milestone">
+          <span class="en-text">30 members, tier shirt system live, first sponsor conversations</span>
+          <span class="pt-text">30 membros, sistema de camisetas de tier ativo, primeiras conversas com patrocinadores</span>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">
+          <span class="en-text">Growth</span>
+          <span class="pt-text">Crescimento</span>
+        </div>
+        <div class="rm-time">
+          <span class="en-text">Months 3–4</span>
+          <span class="pt-text">Meses 3–4</span>
+        </div>
+        <div class="rm-milestone">
+          <span class="en-text">50–75 members, first limited drop, local sponsors closed</span>
+          <span class="pt-text">50–75 membros, primeiro drop limitado, patrocinadores locais fechados</span>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">Op. Beachhead</div>
+        <div class="rm-time">
+          <span class="en-text">Months 4–6</span>
+          <span class="pt-text">Meses 4–6</span>
+        </div>
+        <div class="rm-milestone">
+          <span class="en-text">20–30 teams, R$40–60K event revenue</span>
+          <span class="pt-text">20–30 equipes, R$40–60K de receita do evento</span>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-phase">
+          <span class="en-text">Expansion</span>
+          <span class="pt-text">Expansão</span>
+        </div>
+        <div class="rm-time">
+          <span class="en-text">Months 6–12</span>
+          <span class="pt-text">Meses 6–12</span>
+        </div>
+        <div class="rm-milestone">
+          <span class="en-text">75–100+ members, Operator & Sergeant drops, regional interest</span>
+          <span class="pt-text">75–100+ membros, drops Operator e Sergeant, interesse regional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ch-divider">
+      <div class="ch-divider-line"></div>
+      <span class="ch-divider-label">
+        <span class="en-text">Proof — Current Traction</span>
+        <span class="pt-text">Tração Atual</span>
+      </span>
+      <div class="ch-divider-line"></div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Paying members</span>
+          <span class="pt-text">Membros pagantes</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Instagram followers</span>
+          <span class="pt-text">Seguidores</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Avg reel views</span>
+          <span class="pt-text">Média de views</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Monthly revenue</span>
+          <span class="pt-text">Receita mensal</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Tier promotions</span>
+          <span class="pt-text">Promoções de nível</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Shirts sold</span>
+          <span class="pt-text">Camisetas vendidas</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Sponsors closed</span>
+          <span class="pt-text">Patrocinadores fechados</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+      <div class="mg-cell">
+        <div class="mg-label">
+          <span class="en-text">Teams on waitlist</span>
+          <span class="pt-text">Equipes na lista</span>
+        </div>
+        <div class="mg-value">—</div>
+      </div>
+    </div>
+
+    <div class="pitch-quote en-text">Instructor Kemp continues as operator and brand leader. <strong>Investors receive visibility on performance and growth — not a seat at the operational table.</strong></div>
+    <div class="pitch-quote pt-text">O Instructor Kemp continua como operador e líder da marca. <strong>Investidores recebem visibilidade sobre performance e crescimento — não assento na mesa operacional.</strong></div>
+  </div>
+</section>
+
+<!-- ================================================================
+     10 · FINAL PITCH
+     ================================================================ -->
+<section class="chapter" id="s10">
+  <div class="container">
+    <div class="chapter-header">
+      <div class="chapter-num">10</div>
+      <div class="chapter-title-block">
+        <span class="eyebrow">
+          <span class="en-text">Final Pitch</span>
+          <span class="pt-text">Pitch Final</span>
+        </span>
+        <h2 class="chapter-title">
+          <span class="en-text">DISCIPLINED.<br><span class="a">EARNED.</span><br>BROTHERHOOD.</span>
+          <span class="pt-text">DISCIPLINADO.<br><span class="a">CONQUISTADO.</span><br>IRMANDADE.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="pillars-row" style="margin-bottom:40px">
+      <div class="pillar">
+        <div class="pillar-num">I</div>
+        <div class="pillar-name">
+          <span class="en-text">Disciplined</span>
+          <span class="pt-text">Disciplinado</span>
+        </div>
+        <div class="pillar-desc">
+          <span class="en-text">Every session is a mission. Every rep has a purpose. Structure is the product.</span>
+          <span class="pt-text">Cada sessão é uma missão. Cada repetição tem um propósito. A estrutura é o produto.</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">II</div>
+        <div class="pillar-name">
+          <span class="en-text">Earned</span>
+          <span class="pt-text">Conquistado</span>
+        </div>
+        <div class="pillar-desc">
+          <span class="en-text">Every shirt is a rank. Advancement is never given — it is earned through proven performance.</span>
+          <span class="pt-text">Cada camiseta é uma patente. O avanço nunca é dado — é conquistado por desempenho comprovado.</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">III</div>
+        <div class="pillar-name">
+          <span class="en-text">Brotherhood</span>
+          <span class="pt-text">Irmandade</span>
+        </div>
+        <div class="pillar-desc">
+          <span class="en-text">The squad is real. People who miss team culture, accountability, and belonging — they are here.</span>
+          <span class="pt-text">O esquadrão é real. Pessoas que sentem falta de cultura de equipe, responsabilidade e pertencimento — elas estão aqui.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-block en-text">
+      <p>ALL ELITE Training is not just a fitness program. It is a <strong>premium military beach training and lifestyle brand</strong> built on three non-negotiable pillars. Led by a US Army veteran who served with the 82nd Airborne and 75th Ranger Regiment. Operating in a market that has never seen anything like it. Selling identity at a time when people are desperate for something real.</p>
+      <p>The visual identity is locked. The tier system is designed. The culture is real. The founder is the product.</p>
+    </div>
+    <div class="text-block pt-text">
+      <p>ALL ELITE Training não é apenas um programa de fitness. É uma <strong>marca premium de treinamento militar na praia e lifestyle</strong> construída sobre três pilares inquebráveis. Liderada por um veterano do Exército dos EUA que serviu na 82nd Airborne e na 75th Ranger Regiment. Operando em um mercado que nunca viu nada parecido. Vendendo identidade em um momento em que as pessoas estão desesperadas por algo real.</p>
+      <p>A identidade visual está travada. O sistema de níveis está desenhado. A cultura é real. O fundador é o produto.</p>
+    </div>
+
+    <div class="mission-block">
+      <p class="mission-text en-text">We are not asking people to just work out.<br><span style="color:var(--gold)">We are inviting them to join the squad.</span></p>
+      <p class="mission-text pt-text">Não estamos pedindo para as pessoas apenas treinarem.<br><span style="color:var(--gold)">Estamos convidando elas a entrar para o esquadrão.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     BACK COVER
+     ================================================================ -->
+<footer class="back-cover">
+  <div class="container">
+    <div class="bc-logo">
+      <svg viewBox="0 0 1080 1080" width="120" height="120"><use href="#chevron-logo"/></svg>
+    </div>
+    <div class="bc-title">
+      ALL <span class="g">ELITE</span><br>TRAINING
+    </div>
+    <div class="bc-sub">
+      <span class="en-text">Instructor Kemp Parise · Vila Velha, ES · 2026</span>
+      <span class="pt-text">Instructor Kemp Parise · Vila Velha, ES · 2026</span>
+    </div>
+    <div class="bc-contacts">
+      <div class="bc-contact">+55 27 99695-1487</div>
+      <div class="bc-contact"><a href="mailto:kemp24168@gmail.com">kemp24168@gmail.com</a></div>
+      <div class="bc-contact">@allelite.br</div>
+      <div class="bc-contact">www.allelite.com.br</div>
+    </div>
+    <div class="bc-legal">
+      <span class="en-text">For detailed operational information, request the Operational Manual. For production guidelines, request VIM v1.0.</span>
+      <span class="pt-text">Para informações operacionais detalhadas, solicite o Manual Operacional. Para diretrizes de produção, solicite o VIM v1.0.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / max * 100) + '%';
+  }, { passive: true });
+
+  // Active nav links
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.topnav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.topnav-links a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+
+  // Language toggle
+  const body = document.body;
+  const btnEn = document.getElementById('btn-en');
+  const btnPt = document.getElementById('btn-pt');
+
+  function setLang(lang) {
+    if (lang === 'pt') {
+      body.classList.add('lang-pt');
+      btnPt.classList.add('active');
+      btnEn.classList.remove('active');
+      document.documentElement.lang = 'pt-BR';
+    } else {
+      body.classList.remove('lang-pt');
+      btnEn.classList.add('active');
+      btnPt.classList.remove('active');
+      document.documentElement.lang = 'en';
+    }
+    localStorage.setItem('ae-pitch-lang', lang);
+  }
+
+  btnEn.addEventListener('click', () => setLang('en'));
+  btnPt.addEventListener('click', () => setLang('pt'));
+
+  // Restore saved language
+  const saved = localStorage.getItem('ae-pitch-lang');
+  if (saved === 'pt') setLang('pt');
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.chapter');
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  fadeEls.forEach(el => { el.classList.add('fade-in'); fadeObs.observe(el); });
+</script>
+
+</body>
+</html>
