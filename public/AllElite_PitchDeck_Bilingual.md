@@ -11,7 +11,7 @@
 
 ## 01. The Founder & The Opportunity | O Fundador e a Oportunidade
 
-**EN:** Instructor Kemp Parise served in the US Army — 82nd Airborne Division, 75th Ranger Regiment. After leaving the military, he looked at the fitness market in Vila Velha and saw the same problem everywhere: programs that sell exercise. Nobody was selling the thing that actually changes people — **structure, accountability, and the feeling of belonging to something that demands more than showing up.**
+**EN:** Instructor Kemp Parise served in the US Army — 82nd Airborne Division, Airborne Battalion. After leaving the military, he looked at the fitness market in Vila Velha and saw the same problem everywhere: programs that sell exercise. Nobody was selling the thing that actually changes people — **structure, accountability, and the feeling of belonging to something that demands more than showing up.**
 
 ALL ELITE Training was built to fill that gap. Not another gym. Not another beach class. A veteran-led system where every session is a mission, every shirt is a rank, and the squad is real.
 
@@ -19,7 +19,7 @@ The founder is the moat. Competitors can copy sandbags and tires. They cannot co
 
 > *He is not offering a service. He is the product.*
 
-**PT-BR:** O Instructor Kemp Parise serviu no Exército dos EUA — 82nd Airborne Division, 75th Ranger Regiment. Ao deixar o exército, ele olhou para o mercado fitness de Vila Velha e encontrou o mesmo problema em todo lugar: programas que vendem exercício. Ninguém estava vendendo o que realmente transforma pessoas — **estrutura, responsabilidade e a sensação de pertencer a algo que exige mais do que só aparecer.**
+**PT-BR:** O Instructor Kemp Parise serviu no Exército dos EUA — 82nd Airborne Division, Batalhão Aerotransportado. Ao deixar o exército, ele olhou para o mercado fitness de Vila Velha e encontrou o mesmo problema em todo lugar: programas que vendem exercício. Ninguém estava vendendo o que realmente transforma pessoas — **estrutura, responsabilidade e a sensação de pertencer a algo que exige mais do que só aparecer.**
 
 A ALL ELITE Training foi construída para preencher esse espaço. Não é mais uma academia. Não é mais uma aula na praia. É um sistema liderado por veterano onde cada sessão é uma missão, cada camiseta é uma patente e o esquadrão é real.
 
@@ -261,7 +261,7 @@ A marca ALL ELITE e seus símbolos são originais, juridicamente seguros e não 
 
 **EN:** ALL ELITE Training is not just a fitness program. It is a premium military beach training and lifestyle brand built on three non-negotiable pillars: **Disciplined. Earned. Brotherhood.**
 
-Led by a US Army veteran who served with the 82nd Airborne and 75th Ranger Regiment. Operating in a market that has never seen anything like it. Selling identity at a time when people are desperate for something real.
+Led by a US Army veteran who served with the 82nd Airborne and Airborne Battalion. Operating in a market that has never seen anything like it. Selling identity at a time when people are desperate for something real.
 
 Every member earns their place. Every shirt is a rank. Every session is a mission.
 
@@ -271,7 +271,7 @@ The visual identity is locked. The tier system is designed. The culture is real.
 
 **PT-BR:** ALL ELITE Training não é apenas um programa de fitness. É uma marca premium de treinamento militar na praia e lifestyle construída sobre três pilares inquebráveis: **Disciplinado. Conquistado. Irmandade.**
 
-Liderada por um veterano do Exército dos EUA que serviu na 82nd Airborne e na 75th Ranger Regiment. Operando em um mercado que nunca viu nada parecido. Vendendo identidade em um momento em que as pessoas estão desesperadas por algo real.
+Liderada por um veterano do Exército dos EUA que serviu na 82nd Airborne e no Batalhão Aerotransportado. Operando em um mercado que nunca viu nada parecido. Vendendo identidade em um momento em que as pessoas estão desesperadas por algo real.
 
 Cada membro conquista seu lugar. Cada camiseta é uma patente. Cada sessão é uma missão.
 
